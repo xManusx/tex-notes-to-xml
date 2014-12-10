@@ -17,16 +17,13 @@ do
 
 	if [ "${line:0:12}" = "begin{frame}" ]
 	then
-		echo "begin frame"
 		echo "<note number=\"${i}\">" >> notes.xml;
 	elif [ "${line}" = "end{frame}" ]
 	then
-		echo "end frame"
 		echo "</note>" >> notes.xml;
 		i=$((i + 1));
 	elif [ "${s1}" = "%!" ]
 	then
-		echo "${line:2} to notes.xml";
 		echo ${line:2} >> notes.xml;
 	fi
 done  < $1
