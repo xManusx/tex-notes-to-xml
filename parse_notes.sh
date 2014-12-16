@@ -18,6 +18,11 @@ do
 	if [ "${line:0:12}" = "begin{frame}" ]
 	then
 		echo "<note number=\"${i}\">" >> notes.xml;
+	elif [ "${line}" = "framebreak" ] || [ "${line:0:7}" = "uncover" ]
+	then 
+		echo "</note>" >> notes.xml;
+		i=$((i + 1));
+		echo "<note number=\"${i}\">" >> notes.xml;
 	elif [ "${line}" = "end{frame}" ]
 	then
 		echo "</note>" >> notes.xml;
